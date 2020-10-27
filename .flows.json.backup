@@ -16,7 +16,14 @@
     {
         "id": "5044b531.e28b9c",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Consultas ",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "71760c85.0fc924",
+        "type": "tab",
+        "label": "Firebase",
         "disabled": false,
         "info": ""
     },
@@ -29,6 +36,11 @@
         "db": "grupounoiot",
         "tz": "",
         "charset": "UTF8"
+    },
+    {
+        "id": "4da4b8a.eea9248",
+        "type": "firebase admin",
+        "name": "iotudec"
     },
     {
         "id": "7493e9ee.4b09e8",
@@ -327,7 +339,7 @@
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
-        "topic": "delete from registrosensor when id > 3",
+        "topic": "delete from registrosensor where id > 3",
         "payload": "",
         "payloadType": "date",
         "x": 120,
@@ -335,6 +347,101 @@
         "wires": [
             [
                 "ab617e67.398d7"
+            ]
+        ]
+    },
+    {
+        "id": "2829ad71.289612",
+        "type": "firebase out",
+        "z": "71760c85.0fc924",
+        "name": "Firebase",
+        "ref": "registrosensor",
+        "operation": "push",
+        "admin": "4da4b8a.eea9248",
+        "x": 340,
+        "y": 200,
+        "wires": [
+            [
+                "c9d0c610.9be3e8"
+            ]
+        ]
+    },
+    {
+        "id": "9c69c344.8b54",
+        "type": "inject",
+        "z": "71760c85.0fc924",
+        "name": "simularJson",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{\"temperatura\":23,\"humedad\":70}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 200,
+        "wires": [
+            [
+                "2829ad71.289612"
+            ]
+        ]
+    },
+    {
+        "id": "c9d0c610.9be3e8",
+        "type": "debug",
+        "z": "71760c85.0fc924",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "cf5acdce.53558",
+        "type": "debug",
+        "z": "71760c85.0fc924",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 450,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "39e8c72a.535a78",
+        "type": "firebase in",
+        "z": "71760c85.0fc924",
+        "name": "Consulta",
+        "ref": "registrosensor",
+        "dataAtStart": true,
+        "admin": "4da4b8a.eea9248",
+        "x": 230,
+        "y": 340,
+        "wires": [
+            [
+                "cf5acdce.53558"
             ]
         ]
     }
