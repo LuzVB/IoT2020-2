@@ -1,1 +1,169 @@
-[{"id":"7493e9ee.4b09e8","type":"comment","z":"7815539e.9ef41c", "name":"Node-Red y Git","info":"","x":360,"y":100,"wires":[]}]
+[
+    {
+        "id": "ddb5880a.8135d8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1a0e8ff0.0dd61",
+        "type": "tab",
+        "label": "Base de datos Relacional",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "6819eef3.acce4",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "grupounoiot",
+        "tz": "",
+        "charset": "UTF8"
+    },
+    {
+        "id": "7493e9ee.4b09e8",
+        "type": "comment",
+        "z": "ddb5880a.8135d8",
+        "name": "Node-Red y Git",
+        "info": "",
+        "x": 360,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "51d17c76.71d354",
+        "type": "inject",
+        "z": "ddb5880a.8135d8",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 280,
+        "wires": [
+            [
+                "2eb9adea.6b2b12"
+            ]
+        ]
+    },
+    {
+        "id": "2eb9adea.6b2b12",
+        "type": "debug",
+        "z": "ddb5880a.8135d8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "48cabf40.f716f",
+        "type": "mysql",
+        "z": "1a0e8ff0.0dd61",
+        "mydb": "6819eef3.acce4",
+        "name": "registrosensor",
+        "x": 420,
+        "y": 280,
+        "wires": [
+            [
+                "380b56d4.a9692a"
+            ]
+        ]
+    },
+    {
+        "id": "380b56d4.a9692a",
+        "type": "debug",
+        "z": "1a0e8ff0.0dd61",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "c35225b1.178968",
+        "type": "inject",
+        "z": "1a0e8ff0.0dd61",
+        "name": "Crear Tabla sql",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "CREATE TABLE `registrosensor` (`id` INT NOT NULL AUTO_INCREMENT, `temperatura` FLOAT NOT NULL, `humedad` FLOAT NOT NULL, `fecha` TIMESTAMP NOT NULL, PRIMARY KEY (`id`)) ENGINE = InnoDB",
+        "payload": "",
+        "payloadType": "date",
+        "x": 200,
+        "y": 220,
+        "wires": [
+            [
+                "48cabf40.f716f"
+            ]
+        ]
+    },
+    {
+        "id": "f201af2c.7f981",
+        "type": "inject",
+        "z": "1a0e8ff0.0dd61",
+        "name": "Mostrar Tablas sql",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "show tables ",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 340,
+        "wires": [
+            [
+                "48cabf40.f716f"
+            ]
+        ]
+    }
+]
