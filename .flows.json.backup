@@ -28,6 +28,13 @@
         "info": ""
     },
     {
+        "id": "504016c7.c0ec78",
+        "type": "tab",
+        "label": "Dashboard",
+        "disabled": false,
+        "info": ""
+    },
+    {
         "id": "6819eef3.acce4",
         "type": "MySQLdatabase",
         "name": "",
@@ -41,6 +48,141 @@
         "id": "4da4b8a.eea9248",
         "type": "firebase admin",
         "name": "iotudec"
+    },
+    {
+        "id": "53d6ef2d.e6835",
+        "type": "ui_base",
+        "theme": {
+            "name": "theme-light",
+            "lightTheme": {
+                "default": "#0094CE",
+                "baseColor": "#0094CE",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": true,
+                "reset": false
+            },
+            "darkTheme": {
+                "default": "#097479",
+                "baseColor": "#097479",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
+                "edited": false
+            },
+            "customTheme": {
+                "name": "Untitled Theme 1",
+                "default": "#4B7930",
+                "baseColor": "#4B7930",
+                "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+            },
+            "themeState": {
+                "base-color": {
+                    "default": "#0094CE",
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-titlebar-backgroundColor": {
+                    "value": "#0094CE",
+                    "edited": false
+                },
+                "page-backgroundColor": {
+                    "value": "#fafafa",
+                    "edited": false
+                },
+                "page-sidebar-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-textColor": {
+                    "value": "#1bbfff",
+                    "edited": false
+                },
+                "group-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "group-backgroundColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "widget-textColor": {
+                    "value": "#111111",
+                    "edited": false
+                },
+                "widget-backgroundColor": {
+                    "value": "#0094ce",
+                    "edited": false
+                },
+                "widget-borderColor": {
+                    "value": "#ffffff",
+                    "edited": false
+                },
+                "base-font": {
+                    "value": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif"
+                }
+            },
+            "angularTheme": {
+                "primary": "indigo",
+                "accents": "blue",
+                "warn": "red",
+                "background": "grey"
+            }
+        },
+        "site": {
+            "name": "Node-RED Dashboard",
+            "hideToolbar": "false",
+            "allowSwipe": "false",
+            "lockMenu": "false",
+            "allowTempTheme": "true",
+            "dateFormat": "DD/MM/YYYY",
+            "sizes": {
+                "sx": 48,
+                "sy": 48,
+                "gx": 6,
+                "gy": 6,
+                "cx": 6,
+                "cy": 6,
+                "px": 0,
+                "py": 0
+            }
+        }
+    },
+    {
+        "id": "5b4af03c.45bde",
+        "type": "ui_tab",
+        "name": "Principal",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "60b97973.7043f8",
+        "type": "ui_group",
+        "name": "Sensores on/off",
+        "tab": "5b4af03c.45bde",
+        "order": 1,
+        "disp": true,
+        "width": "3",
+        "collapse": false
+    },
+    {
+        "id": "9cdde9e4.40cab8",
+        "type": "ui_group",
+        "name": "EstadoSensores",
+        "tab": "5b4af03c.45bde",
+        "order": 2,
+        "disp": true,
+        "width": "10",
+        "collapse": false
+    },
+    {
+        "id": "dd351842.c6b868",
+        "type": "ui_group",
+        "name": "GaugesSensores",
+        "tab": "5b4af03c.45bde",
+        "order": 3,
+        "disp": true,
+        "width": "3",
+        "collapse": false
     },
     {
         "id": "7493e9ee.4b09e8",
@@ -356,7 +498,7 @@
         "z": "71760c85.0fc924",
         "name": "Firebase",
         "ref": "registrosensor",
-        "operation": "push",
+        "operation": "set",
         "admin": "4da4b8a.eea9248",
         "x": 340,
         "y": 200,
@@ -385,7 +527,7 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "{\"temperatura\":23,\"humedad\":70}",
+        "payload": "{\"temperatura\":24,\"humedad\":50}",
         "payloadType": "json",
         "x": 150,
         "y": 200,
@@ -442,6 +584,190 @@
         "wires": [
             [
                 "cf5acdce.53558"
+            ]
+        ]
+    },
+    {
+        "id": "be605d0c.9e0ff",
+        "type": "ui_switch",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "label": "on / off",
+        "tooltip": "",
+        "group": "60b97973.7043f8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "estado",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "x": 290,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ea10f374.b333e",
+        "type": "ui_gauge",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "group": "dd351842.c6b868",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 330,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "3e87325e.bbd66e",
+        "type": "ui_chart",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "group": "9cdde9e4.40cab8",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "label": "Temperatura y Humedad",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "useOldStyle": false,
+        "outputs": 1,
+        "x": 370,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "ae608379.c509b",
+        "type": "ui_gauge",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "group": "dd351842.c6b868",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Humedad",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 320,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "3c2cf681.e9ef1a",
+        "type": "inject",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Temperatura",
+        "payload": "24",
+        "payloadType": "num",
+        "x": 120,
+        "y": 180,
+        "wires": [
+            [
+                "3e87325e.bbd66e",
+                "ea10f374.b333e"
+            ]
+        ]
+    },
+    {
+        "id": "ea26a6a7.845d28",
+        "type": "inject",
+        "z": "504016c7.c0ec78",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "Humedad",
+        "payload": "50",
+        "payloadType": "num",
+        "x": 110,
+        "y": 280,
+        "wires": [
+            [
+                "ae608379.c509b",
+                "3e87325e.bbd66e"
             ]
         ]
     }
